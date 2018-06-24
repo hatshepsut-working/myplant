@@ -1,0 +1,19 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zjn.myplant.dao.PlantDao">
+<!-- 	int newPlant(String plantName, double temperatureMin, double temperatureMax, double moistureMin, double moistureMax);
+ -->
+ <insert id="newPlant" useGeneratedKeys="true">
+ insert ignore into plant(plant_name,temperature_min,temperature_max,moisture_min,moisture_max)
+ values (#{plantName},#{temperatureMin},#{temperatureMax},#{moistureMin},#{moistureMax})
+ </insert>
+ <!-- 	Plant queryById(int plantId);
+  -->
+  <select id="queryById" resultType="Plant" parameterType="int">
+  select plant_id,plant_name,temperature_min,temperature_max,moisture_min,moisture_max
+  from plant
+  where plant_id=#{plantId}
+  order by plant_id
+  </select>
+</mapper>
